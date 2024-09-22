@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://rl0vnioit3nl"]
+
+[ext_resource type="PackedScene" uid="uid://btqjeyhnm6y7y" path="res://pause_machine.tscn" id="1_hgcpb"]
+[ext_resource type="Script" path="res://game.gd" id="1_popwy"]
+[ext_resource type="Texture2D" uid="uid://buntswumujtyt" path="res://icon.svg" id="2_ofne0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i174n"]
+size = Vector2(56, 55)
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_popwy")
+
+[node name="PauseMachine" parent="." instance=ExtResource("1_hgcpb")]
+
+[node name="Character" type="CharacterBody2D" parent="."]
+position = Vector2(186, 145)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_i174n")
+
+[node name="TextureRect" type="TextureRect" parent="Character"]
+modulate = Color(1, 0, 1, 0.733333)
+offset_left = -49.0
+offset_top = -48.0
+offset_right = 79.0
+offset_bottom = 80.0
+texture = ExtResource("2_ofne0")

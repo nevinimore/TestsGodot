@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://btqjeyhnm6y7y"]
+
+[ext_resource type="Script" path="res://pause_machine.gd" id="1_2ugy6"]
+[ext_resource type="Texture2D" uid="uid://buntswumujtyt" path="res://icon.svg" id="2_rpnvc"]
+
+[node name="PauseMachine" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_2ugy6")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(636, 375)
+
+[node name="PauseButton" type="TextureButton" parent="Node2D"]
+offset_left = -66.0
+offset_top = -69.0
+offset_right = 62.0
+offset_bottom = 59.0
+focus_mode = 0
+texture_normal = ExtResource("2_rpnvc")
