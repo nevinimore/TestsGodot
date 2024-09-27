@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://cvdy3rmtu8j1b"]
+
+[ext_resource type="Shader" uid="uid://cyqtsk70hws54" path="res://boy_green.tres" id="1_5kavj"]
+[ext_resource type="Texture2D" uid="uid://xug4iluslwf0" path="res://assets/draws/boy_green_shirt/boy_green_shirt.PNG" id="2_4gjrh"]
+[ext_resource type="Shader" path="res://boy_green.gdshader" id="3_8ulhj"]
+[ext_resource type="Script" path="res://color_replacement.gd" id="3_cvbg0"]
+[ext_resource type="Script" path="res://Sprite2D2.gd" id="5_1noid"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_m6mi1"]
+shader = ExtResource("1_5kavj")
+shader_parameter/replacement_color = Color(0.741176, 0.92549, 0.968627, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tmj3w"]
+shader = ExtResource("3_8ulhj")
+shader_parameter/replacement_color = Color(0.901961, 0.8, 0.501961, 1)
+
+[node name="BoyGreenShirt" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_m6mi1")
+position = Vector2(204, 280)
+texture = ExtResource("2_4gjrh")
+script = ExtResource("3_cvbg0")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture_filter = 1
+material = SubResource("ShaderMaterial_tmj3w")
+position = Vector2(966, 292)
+texture = ExtResource("2_4gjrh")
+script = ExtResource("5_1noid")
+
+[node name="ColorPicker" type="ColorPicker" parent="."]
+offset_left = 468.0
+offset_top = 100.0
+offset_right = 766.0
+offset_bottom = 676.0
+color = Color(0, 1, 0, 1)
+
+[connection signal="color_changed" from="ColorPicker" to="Sprite2D" method="_on_color_picker_color_changed"]
+[connection signal="color_changed" from="ColorPicker" to="Sprite2D2" method="_on_color_picker_color_changed"]
