@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhm6slp63s2m4"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_wfy2p"]
+[ext_resource type="Texture2D" uid="uid://bqu2xjxp5nknn" path="res://icon.svg" id="2_4rhno"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_wfy2p")
+
+[node name="MainSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.486275)
+texture = ExtResource("2_4rhno")
+
+[node name="LerpSprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 0.262745)
+texture = ExtResource("2_4rhno")
+
+[node name="MoveSprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 1, 0.447059)
+texture = ExtResource("2_4rhno")
+
+[node name="LerpSprite2" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 0.380392)
+texture = ExtResource("2_4rhno")
