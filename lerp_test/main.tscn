@@ -21,3 +21,7 @@ texture = ExtResource("2_4rhno")
 [node name="LerpSprite2" type="Sprite2D" parent="."]
 modulate = Color(0, 1, 0, 0.380392)
 texture = ExtResource("2_4rhno")
+
+[node name="LerpSprite3" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 0.486275)
+texture = ExtResource("2_4rhno")
