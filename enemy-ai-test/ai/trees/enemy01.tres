@@ -1,13 +1,44 @@
-[gd_resource type="BehaviorTree" load_steps=5 format=3 uid="uid://dg1xa47f8snd3"]
+[gd_resource type="BehaviorTree" load_steps=13 format=3 uid="uid://dg1xa47f8snd3"]
+
+[ext_resource type="Script" path="res://ai/tasks/choose_random_pos.gd" id="1_l1isd"]
+[ext_resource type="Script" path="res://ai/tasks/move_to_position.gd" id="2_kweqf"]
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_da73e"]
+
+[sub_resource type="BTWait" id="BTWait_ljyja"]
+duration = 4.0
 
 [sub_resource type="BTConsolePrint" id="BTConsolePrint_2i46d"]
 text = "random sequence activated"
 
+[sub_resource type="BTAction" id="BTAction_5hshb"]
+script = ExtResource("1_l1isd")
+min_pos = 130
+max_pos = 250
+position_var = &"pos"
+dir_var = &"dir"
+
+[sub_resource type="BTAction" id="BTAction_rmfhe"]
+script = ExtResource("2_kweqf")
+target_pos_var = &"pos"
+dir_var = &"dir"
+speed = 808
+tolerance = 10
+
+[sub_resource type="BTTimeLimit" id="BTTimeLimit_7nsyp"]
+time_limit = 9.0
+children = [SubResource("BTAction_rmfhe")]
+
+[sub_resource type="BTRandomWait" id="BTRandomWait_q3wrh"]
+max_duration = 4.0
+
+[sub_resource type="BTSequence" id="BTSequence_ojx03"]
+custom_name = "Idle Sequence"
+children = [SubResource("BTRandomWait_q3wrh")]
+
 [sub_resource type="BTSequence" id="BTSequence_8h072"]
 custom_name = "Random Move Sequence"
-children = [SubResource("BTConsolePrint_2i46d")]
+children = [SubResource("BTWait_ljyja"), SubResource("BTConsolePrint_2i46d"), SubResource("BTAction_5hshb"), SubResource("BTTimeLimit_7nsyp"), SubResource("BTSequence_ojx03")]
 
 [sub_resource type="BTSelector" id="BTSelector_s4fqn"]
 children = [SubResource("BTSequence_8h072")]

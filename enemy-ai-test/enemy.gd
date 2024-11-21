@@ -8,7 +8,6 @@ const JUMP_FORCE = 300.0
 
 
 func _physics_process(delta: float) -> void:
-	move(-1, 40)
 	
 	if is_on_floor():
 		if is_on_wall():

@@ -1,10 +1,11 @@
-[gd_scene load_steps=22 format=3 uid="uid://c4qdn8n6e7xjk"]
+[gd_scene load_steps=23 format=3 uid="uid://c4qdn8n6e7xjk"]
 
 [ext_resource type="Script" path="res://enemy.gd" id="1_mf02i"]
 [ext_resource type="Texture2D" uid="uid://cugaorrf46jam" path="res://some_kick.png" id="1_pp777"]
 [ext_resource type="Texture2D" uid="uid://sa42pq208yl7" path="res://characters.png" id="2_0au2b"]
 [ext_resource type="Texture2D" uid="uid://csw5vvog4fyss" path="res://art_chatbox.png" id="3_d2ws2"]
 [ext_resource type="Texture2D" uid="uid://n7cwejmwtsfe" path="res://art_warning.png" id="4_2p2yo"]
+[ext_resource type="BehaviorTree" uid="uid://dg1xa47f8snd3" path="res://ai/trees/enemy01.tres" id="4_bnaus"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_loc7a"]
 atlas = ExtResource("1_pp777")
@@ -91,58 +92,6 @@ animations = [{
 "name": &"walk",
 "speed": 8.0
 }]
-
-[sub_resource type="Animation" id="Animation_kkqwu"]
-resource_name = "warning_sprite"
-length = 1.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("WarningSprite:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.266667, 1.16667, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -6), Vector2(0, -26), Vector2(0, -26), Vector2(0, -6)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = false
-tracks/1/path = NodePath("WarningSprite:self_modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.266667, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("WarningSprite:rotation")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.0, -0.349066, 0.349066, -0.349066, 0.349066, -0.349066, 0.349066, 0.0, 0.0]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("WarningSprite:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.266667, 1, 1.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
 
 [sub_resource type="Animation" id="Animation_ox2av"]
 length = 0.001
@@ -271,6 +220,58 @@ tracks/3/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_kkqwu"]
+resource_name = "warning_sprite"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WarningSprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1.16667, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -6), Vector2(0, -26), Vector2(0, -26), Vector2(0, -6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("WarningSprite:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WarningSprite:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -0.349066, 0.349066, -0.349066, 0.349066, -0.349066, 0.349066, 0.0, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WarningSprite:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.266667, 1, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kqjcn"]
 _data = {
 "RESET": SubResource("Animation_ox2av"),
@@ -316,6 +317,7 @@ position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_mnvfk")
 
 [node name="BTPlayer" type="BTPlayer" parent="."]
+behavior_tree = ExtResource("4_bnaus")
 blackboard_plan = SubResource("BlackboardPlan_0fmro")
 
 [node name="ChatBoxSprite" type="Sprite2D" parent="."]
