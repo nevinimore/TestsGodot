@@ -1,12 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://5ggf224tjvgm"]
+[gd_scene load_steps=5 format=3 uid="uid://5ggf224tjvgm"]
 
+[ext_resource type="Script" path="res://game.gd" id="1_0vf6y"]
 [ext_resource type="PackedScene" uid="uid://cijxx1o3xtvfp" path="res://scenario.tscn" id="1_ajqcr"]
 [ext_resource type="PackedScene" uid="uid://23gnxwljn6g0" path="res://player.tscn" id="2_yv8kx"]
+[ext_resource type="PackedScene" uid="uid://c4qdn8n6e7xjk" path="res://enemy.tscn" id="3_k5t5h"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_0vf6y")
 
 [node name="Scenario" parent="." instance=ExtResource("1_ajqcr")]
 
 [node name="Player" parent="." instance=ExtResource("2_yv8kx")]
+position = Vector2(218, -13)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+
+[node name="Enemy" parent="." instance=ExtResource("3_k5t5h")]
+position = Vector2(70, -1)
