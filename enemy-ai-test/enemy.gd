@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Enemy
+
 @onready var animated_sprite:AnimatedSprite2D = $AnimatedSprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -42,4 +44,8 @@ func update_animation():
 		else:
 			animated_sprite.play("idle")
 	pass
+	
+	
+func check_for_self(node: Node) -> bool:
+	return node == self
 	

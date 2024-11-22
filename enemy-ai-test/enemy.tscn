@@ -284,7 +284,7 @@ size = Vector2(10, 22)
 
 [sub_resource type="BlackboardPlan" id="BlackboardPlan_0fmro"]
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="Enemy" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 4
 collision_mask = 16
 script = ExtResource("1_mf02i")
