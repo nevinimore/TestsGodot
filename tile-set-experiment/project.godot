@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="TileSet Experiment"
+run/main_scene="uid://bja81wwikwvta"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Utils="*uid://gn6vf0aay26s"
 
 [physics]
 
