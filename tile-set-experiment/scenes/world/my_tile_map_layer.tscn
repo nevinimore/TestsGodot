@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bja81wwikwvta"]
+[gd_scene format=4 uid="uid://bja81wwikwvta"]
 
 [ext_resource type="Script" uid="uid://c3s62043uiy87" path="res://scenes/world/my_tile_map_layer.gd" id="1_423c2"]
 [ext_resource type="Texture2D" uid="uid://donot8mswege5" path="res://assets/tileset/MakingTheBlob-withDiagonals.png" id="1_g6wtv"]
@@ -371,7 +371,9 @@ texture = ExtResource("1_g6wtv")
 21:3/0/terrains_peering_bit/top_left_corner = 0
 21:2/0 = 0
 21:2/0/terrain_set = 0
+21:2/0/terrains_peering_bit/bottom_side = 0
 21:2/0/terrains_peering_bit/bottom_left_corner = 0
+21:2/0/terrains_peering_bit/left_side = 0
 20:2/0 = 0
 20:2/0/terrain_set = 0
 20:2/0/terrain = 0
@@ -380,7 +382,9 @@ texture = ExtResource("1_g6wtv")
 20:2/0/terrains_peering_bit/bottom_left_corner = 0
 19:2/0 = 0
 19:2/0/terrain_set = 0
+19:2/0/terrains_peering_bit/right_side = 0
 19:2/0/terrains_peering_bit/bottom_right_corner = 0
+19:2/0/terrains_peering_bit/bottom_side = 0
 19:3/0 = 0
 19:3/0/terrain_set = 0
 19:3/0/terrain = 0
@@ -404,6 +408,9 @@ terrain_set_0/terrain_0/color = Color(0.64188236, 0.22261357, 0.23691586, 1)
 sources/0 = SubResource("TileSetAtlasSource_mkq1a")
 
 [node name="MyTileMapLayer" type="TileMapLayer" unique_id=1822787970]
-tile_map_data = PackedByteArray(0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 3, 0, 0, 0, 1, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 4, 0, 2, 0, 0, 0, 2, 0, 1, 0, 0, 0, 3, 0, 3, 0, 0, 0)
+tile_map_data = PackedByteArray("AAABAAAAAAAAAAAAAAABAAEAAAAAAAEAAAABAAIAAAAAAAIAAAADAAIAAAABAAMAAAAEAAIAAAAFAAQAAAAEAAEAAAABAAAAAAAFAAEAAAAHAAQAAAAFAAIAAAAGAAQAAAAGAAIAAAADAAMAAAAFAAAAAAAEAAAAAAAGAAAAAAAGAAIAAAAGAP//AAAEAAAAAAAHAP//AAADAAMAAAACAP7/AAABAAAAAAADAP3/AAABAAAAAAADAP7/AAADAAQAAAAEAP3/AAAJAAIAAAAEAPz/AAABAAAAAAAFAPz/AAACAAAAAAACAP//AAABAAIAAAADAP//AAADAAIAAAAEAP7/AAACAAIAAAAFAP7/AAADAAIAAAAFAP3/AAAHAAAAAAAGAP3/AAACAAIAAAAGAPz/AAACAAAAAAAHAP3/AAACAAIAAAAHAPz/AAACAAAAAAAIAPz/AAAJAAIAAAAIAP3/AAACAAIAAAAJAP3/AAADAAIAAAAJAPz/AAADAAEAAAAJAPv/AAADAAEAAAAIAPv/AAABAAEAAAAIAPr/AAABAAAAAAAJAPr/AAADAAAAAAAKAP//AAABAAMAAAALAP//AAAFAAQAAAALAP7/AAABAAAAAAAMAP7/AAAJAAIAAAAMAP3/AAABAAAAAAANAP7/AAADAAEAAAANAP3/AAADAAAAAAANAP//AAADAAIAAAAMAP//AAACAAIAAAA=")
 tile_set = SubResource("TileSet_bqxgv")
 script = ExtResource("1_423c2")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1971947547]
+zoom = Vector2(4, 4)

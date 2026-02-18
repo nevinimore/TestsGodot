@@ -1,7 +1,10 @@
 extends TileMapLayer
 
+class_name CoarseTileMap
+
 var map_digit_to_tile: Dictionary[int, DataWithBits] = {}
 
+# Called when the node enters the scene tree for the first time.
 func _ready():
 	
 	for source_id in range(tile_set.get_source_count()):
@@ -21,23 +24,22 @@ func _ready():
 			var flag:Array[int] = Utils.data_to_peering_bit_flag(data)
 			map_digit_to_tile[flag[-1]] = DataWithBits.new_coord_data(coord, flag, data)
 			
-		if not 0 in map_digit_to_tile:
-			push_error("The tile set must have an empty cell")
-			get_tree().quit(1)
-		
 		var missing_map_digit_to_tile: Dictionary[int, DataWithBits] = {}
 		for k in range(2**9):
 			if not k in map_digit_to_tile.keys(): # for every possibility not painted
-				if k % 2 == 0: # if the cell itself is not painted,
-					missing_map_digit_to_tile[k] = map_digit_to_tile[0] # it will be empty
+				# if the cell itself is not painted, 
+				# In this mode there will be no empty cell
+				if k % 2 == 0: 
+					continue
 				else: # if its painted it will be the closest terrain
 					#print(k, " (",Utils.int_to_peering_bit_flag(k),") ", " is missing")
 					missing_map_digit_to_tile[k] = closest_from_digit(k)
 					#print("closest: ", missing_map_digit_to_tile[k].coord)
 					#print(k, " (",missing_map_digit_to_tile[k].peering_bit,") ", " is the replacement")
 		
-		for k in missing_map_digit_to_tile.keys():
-			map_digit_to_tile[k] = missing_map_digit_to_tile[k]
+		# Trying to not use missing
+		#for k in missing_map_digit_to_tile.keys():
+			#map_digit_to_tile[k] = missing_map_digit_to_tile[k]
 		
 		#for k in range(2**9):
 			#print(map_digit_to_tile[k].str())
