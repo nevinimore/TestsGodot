@@ -87,5 +87,3 @@ func less_bit(d1: DataWithBits, d2: DataWithBits) -> DataWithBits:
 		q2 += d2.peering_bit[i]
 	
 	return d1 if q1<q2 else d2
-
- 

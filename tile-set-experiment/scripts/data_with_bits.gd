@@ -1,8 +1,10 @@
 extends RefCounted
 
 class_name DataWithBits
-## Struct with 
+## Struct with Coords, Data, Peering Bit
+## 
 ## + Coords: the coord of that tile set on atlas
+## 
 ## + Data: the data of that tile set
 ## + Peering Bit: The array of int called Peering Bit: 
 ## +---+ each position represents a boolean with 

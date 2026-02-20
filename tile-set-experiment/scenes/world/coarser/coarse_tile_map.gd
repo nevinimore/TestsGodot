@@ -23,6 +23,8 @@ func _ready():
 			var data: TileData = atlas_source.get_tile_data(coord, 0)
 			var flag:Array[int] = Utils.data_to_peering_bit_flag(data)
 			map_digit_to_tile[flag[-1]] = DataWithBits.new_coord_data(coord, flag, data)
+			print("flag: ", flag, "starts: ", Utils.where_first_island_starts(flag))
+			print("    : ", flag, "islands: ", Utils.peering_bit_cohesion(flag))
 			
 		var missing_map_digit_to_tile: Dictionary[int, DataWithBits] = {}
 		for k in range(2**9):
@@ -52,22 +54,12 @@ func _ready():
 	
 	# set of used cells with peering bit
 	var used_cells: Dictionary[Vector2i, Array] = {}
-	# set of non used cells but neighbours
-	var non_used_neighbours: Dictionary[Vector2i, Array] = {}
 	for cell in get_used_cells():
 		used_cells[cell] = []
 		for cell_add in Utils.coord_neighbors:
 			var cell_neighbour = cell+cell_add
 			if get_cell_source_id(cell_neighbour) == -1:
 				used_cells[cell].append(0)
-				# Also, use the loop to update that non used cell
-				if not cell_neighbour in non_used_neighbours.keys():
-					var non_used_cell:Vector2i = cell_neighbour
-					non_used_neighbours[cell_neighbour] = []
-					for non_used_cell_add in Utils.coord_neighbors:
-						var non_used_cell_neighbour = non_used_cell+non_used_cell_add
-						var has_cell := get_cell_source_id(non_used_cell_neighbour) != -1
-						non_used_neighbours[cell_neighbour].append(1 if has_cell else 0)
 			else:
 				used_cells[cell].append(1)
 		
@@ -89,27 +81,6 @@ func _ready():
 		print("putting another cell: ", new_cell_atlas_coord)
 		set_cell(cell, 0, map_digit_to_tile[digit].coord, 0)
 		print("---------------------------")
-	
-	print("Non used cells")
-	for cell in non_used_neighbours.keys():
-		print("cell: ", cell)
-		print("neighbours: ", non_used_neighbours[cell])
-		print("tile data: ", get_cell_tile_data(cell))
-		print("source id: ", get_cell_source_id(cell))
-		print("atlas coords: ", get_cell_atlas_coords(cell))
-		print("local to map: ", local_to_map(cell))
-		print("map to local: ", map_to_local(cell))
-		var digit: int = Utils.peering_bit_flag_to_int(non_used_neighbours[cell])
-		print("digit: ", digit)
-		used_cells_candidate[cell] = map_digit_to_tile[digit]
-		var new_cell_atlas_coord := map_digit_to_tile[digit].coord
-		print("putting another cell: ", map_digit_to_tile[digit].str())
-		print("putting another cell: ", new_cell_atlas_coord)
-		set_cell(cell, 0, map_digit_to_tile[digit].coord, 0)
-		print("---------------------------")
-		print("")
-	
-	set_cell(Vector2i(0, 0), 0, Vector2i(0, 0), 0)
 	
 	
 
